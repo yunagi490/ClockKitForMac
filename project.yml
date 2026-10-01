@@ -1,0 +1,76 @@
+# project.yml
+# XcodeGen 用プロジェクト定義。
+# `xcodegen generate` を実行すると ClockKitForMac.xcodeproj が生成される。
+# .xcodeproj はバイナリ的で差分が見づらくGit管理に向かないため、
+# ソースコードベースで管理するために本ファイルを正とする方式を採用している。
+# (xcodeproj自体は .gitignore で除外する)
+name: ClockKitForMac
+
+options:
+  bundleIdPrefix: com.clockkit
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: false
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+    SWIFT_OBJC_BRIDGING_HEADER: "Sources/ClockKitForMac/ClockKitForMac-Bridging-Header.h"
+    CLANG_CXX_LANGUAGE_STANDARD: "c++17"
+    CLANG_CXX_LIBRARY: "libc++"
+    CLANG_ENABLE_MODULES: YES
+    CLANG_ENABLE_OBJC_ARC: YES
+    ENABLE_HARDENED_RUNTIME: YES
+    GENERATE_INFOPLIST_FILE: NO
+
+targets:
+  ClockKitForMac:
+    type: application
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: Sources/ClockKitForMac
+    info:
+      path: Resources/Info.plist
+    entitlements:
+      path: Resources/ClockKitForMac.entitlements
+    settings:
+      base:
+        PRODUCT_NAME: "ClockKit for Mac"
+        PRODUCT_BUNDLE_IDENTIFIER: com.clockkit.formac
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ENABLE_PREVIEWS: YES
+    scheme:
+      testTargets:
+        - ClockKitForMacTests
+      gatherCoverageData: true
+
+  ClockKitForMacTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: Tests/ClockKitForMacTests
+    dependencies:
+      - target: ClockKitForMac
+    settings:
+      base:
+        SWIFT_VERSION: "5.9"
+
+schemes:
+  ClockKitForMac:
+    build:
+      targets:
+        ClockKitForMac: all
+        ClockKitForMacTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - ClockKitForMacTests
+    archive:
+      config: Release

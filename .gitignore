@@ -1,0 +1,28 @@
+# Xcode / XcodeGen
+# project.yml からその都度生成するため .xcodeproj はGit管理しない
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# macOS
+.DS_Store
+
+# Build artifacts
+build/
+*.o
+*.pyc
+
+# Fastlane / CI artifacts (将来拡張用)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
