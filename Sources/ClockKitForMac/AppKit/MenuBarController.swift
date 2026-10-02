@@ -75,10 +75,18 @@ final class MenuBarController: NSObject {
         menu.addItem(.separator())
         menu.addItem(withTitle: "ClockKit を終了", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
 
-        statusItem?.menu = menu
-        statusItem?.button?.performClick(nil)
-        // メニューを1回表示した後は参照を外し、通常クリックに戻す。
-        statusItem?.menu = nil
+//        statusItem?.menu = menu
+//        statusItem?.button?.performClick(nil)
+//        // メニューを1回表示した後は参照を外し、通常クリックに戻す。
+//        statusItem?.menu = nil
+          // statusItem.menu の付け外しは内部的にステータスアイテムの
+          // シーンを作り直してしまう(コンソールの
+         // "Unhandled disconnected scene <NSStatusItemScene>" の原因）。
+         // menu は常に nil のままにし、NSMenu.popUp を直接呼び出す。
+        guard let button = statusItem?.button else { return }
+        menu.popUp(positioning:nil, at: NSPoint(x: 0, y:button.bounds.height + 4), in: button)
+
+
     }
 
     @objc private func menuOpenSettings() {
