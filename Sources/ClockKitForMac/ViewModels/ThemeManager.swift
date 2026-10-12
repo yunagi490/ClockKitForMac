@@ -98,11 +98,22 @@ final class ThemeManager: ObservableObject {
         }
 
         let resolvedFont: Font
-        if NSFont(name: name, size: clampedSize) != nil {
-            resolvedFont = Font.custom(name, size: clampedSize)
+        // if NSFont(name: name, size: clampedSize) != nil {
+            // resolvedFont = Font.custom(name, size: clampedSize)
+            // NSFont(name: )はPostScript名(例: "SFMono-Regular")を要求するが
+            // フォント選択ドロップダウンは NSFontManager.availableFontFamilies の
+            // ファミリー名（例: "SF Mono"）を渡してくる。両者は一致しないため、
+            // ファミリー名ベースで解決できる NSFontManager.font(withFamily:) を使う。
+            if let nsFont = NSFontManager.shared.font(withFamily: name, traits: [], weight: 5, size: clampedSize){
+                resolvedFont = Font(nsFont)
         } else {
-            logger.warning("Font not found: \(name, privacy: .public), fallback to SF Mono")
-            resolvedFont = Font.custom("SF Mono", size: clampedSize)
+            // logger.warning("Font not found: \(name, privacy: .public), fallback to SF Mono")
+            // resolvedFont = Font.custom("SF Mono", size: clampedSize)
+            // ここでカスタムフォント名に再度フォールバックすると同じ理由で
+            // 解決に失敗し続ける可能性があるため、必ず解決できる
+            // システム標準の等幅フォントにフォールバックする。
+            logger.warning("Font family not found: ¥(name, privacy: .public), fallvack to system monospaced")
+            resolvedFont = .system(size: clampedSize, design: .monospaced)
         }
 
         currentFont = resolvedFont
