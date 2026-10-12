@@ -17,7 +17,7 @@ struct ThemeSettingsTab: View {
         let priority = ["SF Mono", "Helvetica Neue"]
         let system = NSFontManager.shared.availableFontFamilies.sorted()
         let rest = system.filter { !priority.contains($0) }
-        return priority.filter { NSFont(name: $0, size: 12) != nil } + rest
+        return priority.filter { NSFontManager.shared.font(withFamily: $0, traits: [], weight: 5, size: 12) != nil } + rest
     }
 
     var body: some View {

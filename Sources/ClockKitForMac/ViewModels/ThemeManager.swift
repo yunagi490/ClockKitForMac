@@ -18,7 +18,7 @@ final class ThemeManager: ObservableObject {
 
     // MARK: - Published プロパティ（View が bind する）
 
-    @Published private(set) var currentFont: Font = .custom("SF Mono", size: 128.0)
+    @Published private(set) var currentFont: Font = .system(size: 128.0, design: .monospaced)
     @Published private(set) var textColor: Color = Color(hex: "#FF9500")
     @Published private(set) var backgroundColor: Color = Color(hex: "#1A1A1A")
 
@@ -112,7 +112,7 @@ final class ThemeManager: ObservableObject {
             // ここでカスタムフォント名に再度フォールバックすると同じ理由で
             // 解決に失敗し続ける可能性があるため、必ず解決できる
             // システム標準の等幅フォントにフォールバックする。
-            logger.warning("Font family not found: ¥(name, privacy: .public), fallvack to system monospaced")
+            logger.warning("Font family not found: \(name, privacy: .public), fallback to system monospaced")
             resolvedFont = .system(size: clampedSize, design: .monospaced)
         }
 

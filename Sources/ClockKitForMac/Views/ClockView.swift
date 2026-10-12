@@ -31,6 +31,8 @@ struct ClockView: View {
                         .font(theme.currentFont)
                         .foregroundStyle(theme.textColor)
                         .monospacedDigit()
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.2)
                         .accessibilityLabel(Text("現在時刻 \(clock.timeString)"))
 
                     // ③ AM/PM（12hモード時のみ、showAmPm設定に従う）

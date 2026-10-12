@@ -18,7 +18,7 @@ struct ClockKitForMacApp: App {
             RootView()
                 .environmentObject(appDelegate.environment)
         }
-        .windowResizability(.contentSize)
+//        .windowResizability(.contentSize)
         .defaultSize(width: 1024, height: 600)
         .commands {
             CommandGroup(replacing: .newItem) { }
