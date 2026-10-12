@@ -32,7 +32,7 @@ enum NextEventFetcher {
         }
 
         let endDate = now.addingTimeInterval(Double(clampedHours) * 3600)
-        let predicate = store.predicateForEvents(startDate: now, endDate: endDate, calendars: calendars)
+        let predicate = store.predicateForEvents(withStart: now, end: endDate, calendars: calendars)
 
         var events: [EKEvent] = []
         store.enumerateEvents(matching: predicate) { event, _ in

@@ -88,6 +88,7 @@ final class AppEnvironment: ObservableObject {
         settings.$current
             .map(\.floatWindowEnabled)
             .removeDuplicates()
+            .dropFirst()
             .sink { [weak self] enabled in
                 self?.windowController.setFloating(enabled)
             }

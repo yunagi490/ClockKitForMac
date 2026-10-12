@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-    <!--
-      非機能要件一覧（REQ-001）: App Sandbox を有効化し、
-      不要な entitlements を要求しないこと。
-      EventKit（カレンダー）読取は TCC のプライバシー許諾
-      （NSCalendarsUsageDescription + ユーザー許可）のみで動作し、
-      Sandbox 側の追加 entitlement は不要。
-      外部ネットワーク通信は行わないため network entitlements も付与しない。
-    -->
-    <key>com.apple.security.app-sandbox</key>
-    <true/>
-</dict>
+<dict/>
 </plist>

@@ -2,35 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!--
-      REQ-001 制約条件: 外部ネットワーク通信は行わない。
-      IF-SPEC-001 (IF-002) 制約・注意事項:
-      「NSCalendarsUsageDescriptionキーを必須記載すること
-       （未記載はApp Store審査却下・クラッシュの原因）」
-    -->
-    <key>NSCalendarsUsageDescription</key>
-    <string>月間カレンダーに予定のドット表示と「次の予定」を表示するために、カレンダーへのアクセスを使用します。</string>
-
-    <!-- macOS 13 Ventura 以降対応（REQ-001） -->
-    <key>LSMinimumSystemVersion</key>
-    <string>13.0</string>
-
-    <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
-    <key>CFBundleVersion</key>
-    <string>1</string>
-
-    <key>NSHumanReadableCopyright</key>
-    <string>© 2026 ClockKit for Mac</string>
-
-    <!-- SwiftUI App + Settings シーンの標準構成 -->
-    <key>NSPrincipalClass</key>
-    <string>NSApplication</string>
-    <key>LSApplicationCategoryType</key>
-    <string>public.app-category.utilities</string>
-
-    <!-- SF Mono 等を含む標準フォントのみ使用。独自フォント埋め込みなし。 -->
-    <key>NSHighResolutionCapable</key>
-    <true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>

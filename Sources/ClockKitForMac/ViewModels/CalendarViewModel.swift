@@ -138,7 +138,7 @@ final class CalendarViewModel: ObservableObject {
         }
 
         var eventDates = Set<Int>()
-        let predicate = store.predicateForEvents(startDate: monthStart, endDate: monthEnd, calendars: calendars)
+        let predicate = store.predicateForEvents(withStart: monthStart, end: monthEnd, calendars: calendars)
         store.enumerateEvents(matching: predicate) { event, _ in
             let day = Calendar.current.component(.day, from: event.startDate)
             eventDates.insert(day)
